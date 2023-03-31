@@ -13,7 +13,7 @@
     <div class="container">
         <form method="post">
             <label for="length">Password length:</label>
-            <input type="number" name="length" min="8" max="50" value="8" required>
+            <input type="number" name="length" min="0" max="50" value="8" required>
             <label for="include-lowercase">Include lowercase letters:</label>
             <input type="checkbox" name="include-lowercase" checked>
             <label for="include-uppercase">Include uppercase letters:</label>
@@ -36,29 +36,37 @@
         $includeNumbers = isset($_POST['include-numbers']);
         $includeSymbols = isset($_POST['include-symbols']);
 
+        if (!empty($length) && ($length >= "8")) {
+            if (!empty($includeLowercase) || !empty($includeUppercase) || !empty($includeNumbers) || !empty($includeSymbols)) {
+                $alphabet = '';
+                if ($includeLowercase) {
+                    $alphabet .= 'abcdefghijklmnopqrstuvwxyz';
+                }
+                if ($includeUppercase) {
+                    $alphabet .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                }
+                if ($includeNumbers) {
+                    $alphabet .= '0123456789';
+                }
+                if ($includeSymbols) {
+                    $alphabet .= '!@#$%^&*()_+-=[]{}|;:,.<>?';
+                }
 
-        $alphabet = '';
-        if ($includeLowercase) {
-            $alphabet .= 'abcdefghijklmnopqrstuvwxyz';
-        }
-        if ($includeUppercase) {
-            $alphabet .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        }
-        if ($includeNumbers) {
-            $alphabet .= '0123456789';
-        }
-        if ($includeSymbols) {
-            $alphabet .= '!@#$%^&*()_+-=[]{}|;:,.<>?';
-        }
+                $password = '';
+                $max = strlen($alphabet) - 1;
+                for ($i = 0; $i < $length; $i++) {
+                    $index = rand(0, $max);
+                    $password .= $alphabet[$index];
+                }
 
-        $password = '';
-        $max = strlen($alphabet) - 1;
-        for ($i = 0; $i < $length; $i++) {
-            $index = rand(0, $max);
-            $password .= $alphabet[$index];
-        }
+                echo '<p>Your password is: ' . htmlspecialchars($password) . '</p>';
+            } else {
 
-        echo '<p>Your password is: ' . htmlspecialchars($password) . '</p>';
+                echo '<p>Please check at least one box</p>';
+            }
+        } else {
+            echo '<p>Please put a length that is at least 8 characters or more </p>';
+        }
     }
 
     ?>
