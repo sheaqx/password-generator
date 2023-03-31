@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Password Generator</title>
 </head>
 
@@ -12,64 +13,36 @@
     <h1>Password Generator</h1>
     <div class="container">
         <form method="post">
-            <label for="length">Password length:</label>
-            <input type="number" name="length" min="0" max="50" value="8" required>
-            <label for="include-lowercase">Include lowercase letters:</label>
-            <input type="checkbox" name="include-lowercase" checked>
-            <label for="include-uppercase">Include uppercase letters:</label>
-            <input type="checkbox" name="include-uppercase" checked>
-            <label for="include-numbers">Include numbers:</label>
-            <input type="checkbox" name="include-numbers">
-            <label for="include-symbols">Include symbols:</label>
-            <input type="checkbox" name="include-symbols">
+
+            <?php
+            include 'generator.php';
+            ?>
+
+            <div>
+                <label for="length">Password length</label>
+                <input type="number" name="length" min="0" max="50" value="8" required>
+            </div>
+            <div>
+                <label for="include-lowercase">Include lowercase letters</label>
+                <input type="checkbox" name="include-lowercase" checked>
+            </div>
+            <div>
+                <label for="include-uppercase">Include uppercase letters</label>
+                <input type="checkbox" name="include-uppercase" checked>
+            </div>
+            <div>
+                <label for="include-numbers">Include numbers</label>
+                <input type="checkbox" name="include-numbers">
+            </div>
+            <div>
+                <label for="include-symbols">Include symbols</label>
+                <input type="checkbox" name="include-symbols">
+            </div>
             <input type="submit" value="Generate password">
         </form>
     </div>
+    <!-- <p>fhuefhuei</p> -->
 
-    <?php
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-        $length = $_POST['length'];
-        $includeLowercase = isset($_POST['include-lowercase']);
-        $includeUppercase = isset($_POST['include-uppercase']);
-        $includeNumbers = isset($_POST['include-numbers']);
-        $includeSymbols = isset($_POST['include-symbols']);
-
-        if (!empty($length) && ($length >= "8")) {
-            if (!empty($includeLowercase) || !empty($includeUppercase) || !empty($includeNumbers) || !empty($includeSymbols)) {
-                $alphabet = '';
-                if ($includeLowercase) {
-                    $alphabet .= 'abcdefghijklmnopqrstuvwxyz';
-                }
-                if ($includeUppercase) {
-                    $alphabet .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                }
-                if ($includeNumbers) {
-                    $alphabet .= '0123456789';
-                }
-                if ($includeSymbols) {
-                    $alphabet .= '!@#$%^&*()_+-=[]{}|;:,.<>?';
-                }
-
-                $password = '';
-                $max = strlen($alphabet) - 1;
-                for ($i = 0; $i < $length; $i++) {
-                    $index = rand(0, $max);
-                    $password .= $alphabet[$index];
-                }
-
-                echo '<p>Your password is: ' . htmlspecialchars($password) . '</p>';
-            } else {
-
-                echo '<p>Please check at least one box</p>';
-            }
-        } else {
-            echo '<p>Please put a length that is at least 8 characters or more </p>';
-        }
-    }
-
-    ?>
 </body>
 
 </html>
