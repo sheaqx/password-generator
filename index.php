@@ -13,14 +13,15 @@
     <h1>Password Generator</h1>
     <div class="container">
         <form method="post">
-
             <?php
             include 'generator.php';
             ?>
-
             <div>
                 <label for="length">Password length</label>
-                <input type="number" name="length" min="0" max="50" value="8" required>
+                <div class="range-container">
+                    <input type="range" id="length" name="length" min="0" max="50" value="20" required><br>
+                    <span id="length-value">20</span>
+                </div>
             </div>
             <div>
                 <label for="include-lowercase">Include lowercase letters</label>
@@ -41,7 +42,14 @@
             <input type="submit" value="Generate password">
         </form>
     </div>
-    <!-- <p>fhuefhuei</p> -->
+    <script>
+        const passwordLengthRange = document.querySelector('#length');
+        const passwordLengthValue = document.querySelector('#length-value');
+
+        passwordLengthRange.addEventListener('input', (event) => {
+            passwordLengthValue.textContent = event.target.value;
+        });
+    </script>
 
 </body>
 

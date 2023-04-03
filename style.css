@@ -1,4 +1,4 @@
- @import url("//fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url("//fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 * {
   font-family: "Montserrat", sans-serif;
@@ -30,10 +30,10 @@ h1 {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.container form p{
-  margin-top:5px;
- }
- 
+.container form p {
+  margin-top: 5px;
+}
+
 .container div {
   padding: 10px;
 }
@@ -71,6 +71,16 @@ p {
   box-shadow: 0 2px 5px #0000004d;
   text-align: center;
   font-size: 1.2em;
-  font-weight: bold; 
- 
-} /**/
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
+input[type="range"] {
+  width: 100%;
+  cursor: pointer;
+}
+
+.container div .range-container {
+  display: flex;
+  align-items: center;
+}
