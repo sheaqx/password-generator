@@ -51,10 +51,6 @@
         passwordLengthRange.addEventListener('input', (event) => {
             passwordLengthValue.textContent = event.target.value;
         });
-        const button = document.getElementById('myButton');
-        button.addEventListener('click', function() {
-            button.checked = !button.checked;
-        });
     </script>
 
 </body>
