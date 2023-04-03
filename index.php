@@ -19,25 +19,25 @@
             <div>
                 <label for="length">Password length</label>
                 <div class="range-container">
-                    <input type="range" id="length" name="length" min="0" max="50" value="20" required><br>
+                    <input type="range" id="length" name="length" min="0" max="50" value="20"><br>
                     <span id="length-value">20</span>
                 </div>
             </div>
             <div>
-                <label for="include-lowercase">Include lowercase letters</label>
-                <input type="checkbox" name="include-lowercase" checked>
+                <label for="lowercase">a-z</label>
+                <input type="checkbox" id="lowercase" name="include-lowercase" checked>
             </div>
             <div>
-                <label for="include-uppercase">Include uppercase letters</label>
-                <input type="checkbox" name="include-uppercase" checked>
+                <label for="uppercase">A-Z</label>
+                <input type="checkbox" id="uppercase" name="include-uppercase" checked>
             </div>
             <div>
-                <label for="include-numbers">Include numbers</label>
-                <input type="checkbox" name="include-numbers">
+                <label for="numbers">0-9</label>
+                <input type="checkbox" id="numbers" name="include-numbers">
             </div>
             <div>
-                <label for="include-symbols">Include symbols</label>
-                <input type="checkbox" name="include-symbols">
+                <label for="symbols">/*·$)(%</label>
+                <input type="checkbox" id="symbols" name="include-symbols">
             </div>
             <input type="submit" value="Generate password">
         </form>
